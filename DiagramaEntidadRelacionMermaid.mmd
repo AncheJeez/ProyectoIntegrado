@@ -1,0 +1,77 @@
+---
+config:
+  look: neo
+  theme: redux
+---
+classDiagram
+    Usuario --> FavoritoNM : Tiene
+    FavoritoNM --> Industria
+    Industria --> RelevantNews : Tiene
+    Industria --> Tipo_Industria
+    Tipo --> Tipo_Industria
+    Usuario --> Simulacion : Crea
+    Simulacion --> Industria
+    Simulacion --> Grafica : Obtenemos
+    note for Industria "Ej: La Industria Petróleo Crudo
+                        es del tipo Materia Prima, pero
+                        también es del tipo Energía"
+
+namespace EspacioUsuario{
+    class Usuario{
+        +int id_usuario
+        +String nombre
+        +String tipo_usuario
+        +double dineroSimulado
+        +Deposit(dinero)
+        +Withdraw(dinero)
+    }
+    class Simulacion{
+        +int id_simulacion
+        +int id_usuario
+        +int id_grafica
+        +int id_industria
+        +double variacion_de_mercado
+        +GetVariacionDinero(Usuario.dineroSimulado)
+    }
+    class FavoritoNM{
+        +int id_usuario
+        +int id_industria
+        +Date fecha_agregado
+        +MostrarFavLastDate(Date)
+    }
+}
+namespace Industrias{
+    class Industria{
+        +int id_industria
+        +String nombre
+        +String BreveDescripcion
+        +double Volume
+        +double OpenInterest
+        +String simboloTicker
+        +double precioActual
+        +GetMajorIndices(id_industria)
+    }
+    class Tipo_Industria{
+        +id_industria
+        +int id_tipo
+    }
+
+    class Tipo{
+        +int id_tipo
+        +String descripcion
+        +GetDatosGenerales(id_industria)
+    }
+}
+class Grafica{
+    +int id_grafica
+    +String Datos_grafica
+    +GetGraficaFormat()
+}
+class RelevantNews{
+    +int id_news
+    +int id_industria
+    +String titulo
+    +String url
+    +Date fecha_publicacion
+    +GetNewsFromAPI()
+}
