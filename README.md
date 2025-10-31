@@ -1,4 +1,4 @@
 # ProyectoIntegrado
 Proyecto DAW
 
-![alt text](http://url/to/img.png)
+![alt text](https://github.com/AncheJeez/ProyectoIntegrado/blob/main/DiagramaEntidadRelacionMermaid.mmd)
